@@ -15,7 +15,7 @@ while true; do
     nordvpn=$(awk -F"Status: " '{ print $2}' <(nordvpn status))
     lip=$(awk -F"inet | brd" '/enp0s/ {print $2}' <(ip addr))
 
-    prompt="LAN: ${lip:1:100} | VPN: ${nordvpn:1:100} | RAM : ${ram:0:5}% | CPU: ${cpu:0:5}% | 墳 : $masterVol | $dateTime | $USER"
+    prompt="LAN: ${lip:1:100} | VPN: ${nordvpn:1:100} | RAM : ${ram:0:5}% | CPU: ${cpu:0:5}% | 墳 : $masterVol | $dateTime |||"
 
     xsetroot -name "$prompt"
     sleep 1
