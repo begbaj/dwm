@@ -5,3 +5,9 @@ patch notes:
     centerfirstwindow bug:
         this patch has a bug with dual monitor setups which
         makes new windows render on the wrong monitr.
+
+merging issues:
+    colorbar + systray:
+        pathing order: systray -> colorbar; resulted in merging conflicts.
+        I did managed to resolve the conflicts by looking at the .rej files
+        which led me to incorporate some colorbar instructions into systray's 
