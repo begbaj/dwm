@@ -24,11 +24,20 @@ static const char *colors[][3]      = {
 	/*                      fg          bg           border   */
 	[SchemeNorm]        = { col_gray3, col_gray1,   col_gray2 },
 	[SchemeSel]         = { col_gray4, col_cyan,    col_cyan  },
-	[SchemeStatus]      = { col_gray3, "#121212",   "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
+	[SchemeStatus]      = { col_gray3, col_cyan,   "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
 	[SchemeTagsSel]     = { col_gray4, col_cyan,    "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
         [SchemeTagsNorm]    = { col_gray3, col_gray1,   "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
         [SchemeInfoSel]     = { col_gray4, col_cyan,    "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
         [SchemeInfoNorm]    = { col_gray3, col_gray1,   "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
+};
+
+static const char *const autostart[] = {
+	"autowall", "-q", "arch linux", "-r", "1920x1080", "-s", "2", NULL,
+        "picom", "--vsync", "--experimental-backends", "-m", "1",
+            "-f", "-c", "--blur-strength", "5", "--xrender-sync-fence",
+            "--no-ewmh-fullscreen", "-b", NULL,
+        "setsid", "/home/began/.local/share/dwm/scripts/statusbar/status.sh", "&", NULL,
+	NULL /* terminate */
 };
 
 /* tagging */
@@ -79,44 +88,45 @@ static const char *killdwm[]  = { "pkill", "dwm", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_Print,  spawn,          {.v = screenshot } },
-	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
-	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
-	{ MODKEY,                       XK_b,      togglebar,      {0} },
-	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
-	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
-	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[3]} },
-	{ MODKEY,                       XK_o,      setlayout,      {.v = &layouts[4]} },
-	{ MODKEY,                       XK_space,  setlayout,      {0} },
-	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
-	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
-	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
-	{ MODKEY,                       XK_s, focusmon,       {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_s,      tagmon,         {.i = +1 } },
-	TAGKEYS(                        XK_1,                      0)
-	TAGKEYS(                        XK_2,                      1)
-	TAGKEYS(                        XK_3,                      2)
-	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ControlMask|ShiftMask, XK_e,      quit,           {0} },
-	{ MODKEY|ControlMask|ShiftMask, XK_Escape,    spawn,          {.v = killdwm }},
+	{ MODKEY,                       XK_p,           spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_Return,      spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_Print,       spawn,          {.v = screenshot } },
+	{ MODKEY,                       XK_minus,       setgaps,        {.i = -1 } },
+	{ MODKEY,                       XK_equal,       setgaps,        {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_equal,       setgaps,        {.i = 0  } },
+	{ MODKEY,                       XK_b,           togglebar,      {0} },
+	{ MODKEY,                       XK_j,           focusstack,     {.i = +1 } },
+	{ MODKEY,                       XK_k,           focusstack,     {.i = -1 } },
+	{ MODKEY,                       XK_i,           incnmaster,     {.i = +1 } },
+	{ MODKEY,                       XK_d,           incnmaster,     {.i = -1 } },
+	{ MODKEY,                       XK_h,           setmfact,       {.f = -0.05} },
+	{ MODKEY,                       XK_l,           setmfact,       {.f = +0.05} },
+	{ MODKEY|ShiftMask,             XK_Return,      zoom,           {0} },
+	{ MODKEY,                       XK_Tab,         view,           {0} },
+	{ MODKEY|ShiftMask,             XK_q,           killclient,     {0} },
+	{ MODKEY,                       XK_t,           setlayout,      {.v = &layouts[0]} },
+	{ MODKEY,                       XK_f,           setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,                       XK_m,           setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_u,           setlayout,      {.v = &layouts[3]} },
+	{ MODKEY,                       XK_o,           setlayout,      {.v = &layouts[4]} },
+	{ MODKEY,                       XK_space,       setlayout,      {0} },
+	{ MODKEY|ShiftMask,             XK_space,       togglefloating, {0} },
+	{ MODKEY,                       XK_0,           view,           {.ui = ~0 } },
+	{ MODKEY|ShiftMask,             XK_0,           tag,            {.ui = ~0 } },
+	{ MODKEY,                       XK_s,           focusmon,       {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_s,           tagmon,         {.i = +1 } },
+	TAGKEYS(                        XK_1,                           0)
+	TAGKEYS(                        XK_2,                           1)
+	TAGKEYS(                        XK_3,                           2)
+	TAGKEYS(                        XK_4,                           3)
+	TAGKEYS(                        XK_5,                           4)
+	TAGKEYS(                        XK_6,                           5)
+	TAGKEYS(                        XK_7,                           6)
+	TAGKEYS(                        XK_8,                           7)
+	TAGKEYS(                        XK_9,                           8)
+	{ MODKEY|ControlMask|ShiftMask, XK_e,           quit,           {0} },
+	{ MODKEY|ControlMask|ShiftMask, XK_Escape,      quit,           {0} },
+	{ MODKEY|ControlMask|ShiftMask, XK_Escape,      spawn,          {.v = killdwm }},
 };
 
 /* button definitions */
