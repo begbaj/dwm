@@ -1,0 +1,7 @@
+notes took during dwm patching/ricing
+=====================================
+
+patch notes:
+    centerfirstwindow bug:
+        this patch has a bug with dual monitor setups which
+        makes new windows render on the wrong monitr.
