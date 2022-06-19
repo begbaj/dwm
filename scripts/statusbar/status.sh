@@ -1,4 +1,16 @@
-SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+#!/bin/sh
+
+for pid in $(pidof -x script.sh); do
+    if [ $pid != $$ ]; then
+        echo "[$(date)] : script.sh : Process is already running with PID $pid"
+        exit 1
+    fi
+done
+
+
+SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )" # maybe ~/.cache is a more reasonable path...
+
+lastcpu=0
 while true; do
     if [ ! -d "$SCRIPTPATH/status" ]; then
         mkdir "$SCRIPTPATH/status"
@@ -13,9 +25,14 @@ while true; do
     ramf=$(awk '/MemAvailable/ {print $2}' <(cat /proc/meminfo))
     ram=$(awk -v f=$ramf -v t=$ramt 'BEGIN {print ((t-f)/t)*100}')
     nordvpn=$(awk -F"Status: " '{ print $2}' <(nordvpn status))
+    nordvpnserver=$(awk -F"[.|:]" '/Current server: / { print $2 }' <(nordvpn status))
+    nordvpnip=$(awk -F": " '/Server IP: / { print $2 }' <(nordvpn status))
     lip=$(awk -F"inet | brd" '/enp0s/ {print $2}' <(ip addr))
 
-    prompt="LAN: ${lip:1:100} | VPN: ${nordvpn:1:100} | RAM : ${ram:0:5}% | CPU: ${cpu:0:5}% | 墳 : $masterVol | $dateTime |||"
+    pr_nordvpn="[ VPN: ${nordvpn:0:100} ON: ${nordvpnserver} IP: ${nordvpnip} ]"
+    pr_system="[ RAM : ${ram:0:5}% ][ CPU: ${cpu:0:5}% ]"
+    pr_audio="[ 墳 : $masterVol ]"
+    prompt="$pr_nordvpn $pr_system $pr_audio [ $dateTime ]"
 
     xsetroot -name "$prompt"
     sleep 1

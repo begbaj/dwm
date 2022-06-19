@@ -20,8 +20,10 @@ static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#770033";
+// BEGIN PYWAL COMMENT
+/*
 static const char *colors[][3]      = {
-	/*                      fg          bg           border   */
+	//                      fg          bg           border   //
 	[SchemeNorm]        = { col_gray3, col_gray1,   col_gray2 },
 	[SchemeSel]         = { col_gray4, col_cyan,    col_cyan  },
 	[SchemeStatus]      = { col_gray3, col_cyan,   "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
@@ -30,9 +32,12 @@ static const char *colors[][3]      = {
         [SchemeInfoSel]     = { col_gray4, col_cyan,    "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
         [SchemeInfoNorm]    = { col_gray3, col_gray1,   "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
 };
+*/
+// END PYWAL COMMENT
+#include "/home/began/.cache/wal/colors-wal-dwm.h"
 
 static const char *const autostart[] = {
-	"autowall", "-q", "arch linux", "-r", "1920x1080", "-s", "2", NULL,
+        "feh", "--bg-scale", "--no-fehbg", "/home/began/.local/share/autowall/paper", NULL,
         "picom", "--vsync", "--experimental-backends", "-m", "1",
             "-f", "-c", "--blur-strength", "5", "--xrender-sync-fence",
             "--no-ewmh-fullscreen", "-b", NULL,
@@ -42,6 +47,18 @@ static const char *const autostart[] = {
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+
+static const char *tagsel[][2] = {
+	{ "#ffffff", "#ff0000" },
+	{ "#ffffff", "#ff7f00" },
+	{ "#000000", "#ffff00" },
+	{ "#000000", "#00ff00" },
+	{ "#ffffff", "#0000ff" },
+	{ "#ffffff", "#4b0082" },
+	{ "#ffffff", "#9400d3" },
+	{ "#000000", "#ffffff" },
+	{ "#ffffff", "#000000" },
+};
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -81,7 +98,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-l", "15", "-F", "-c", NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *screenshot[]  = { "flameshot", "gui", NULL };
 static const char *killdwm[]  = { "pkill", "dwm", NULL };
