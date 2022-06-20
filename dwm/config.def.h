@@ -37,11 +37,11 @@ static const char *colors[][3]      = {
 #include "/home/began/.cache/wal/colors-wal-dwm.h"
 
 static const char *const autostart[] = {
+        "dwmblocks","&", NULL,
         "feh", "--bg-scale", "--no-fehbg", "/home/began/.local/share/autowall/paper", NULL,
         "picom", "--vsync", "--experimental-backends", "-m", "1",
             "-f", "-c", "--blur-strength", "5", "--xrender-sync-fence",
             "--no-ewmh-fullscreen", "-b", NULL,
-        "setsid", "/home/began/.local/share/dwm/scripts/statusbar/status.sh", "&", NULL,
 	NULL /* terminate */
 };
 
