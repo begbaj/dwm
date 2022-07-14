@@ -2,7 +2,7 @@
 
 /* appearance */
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
-static const unsigned int gappx     = 5;        /* gap pixel between windows */
+static const unsigned int gappx     = 10;        /* gap pixel between windows */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayonleft = 0;   	/* 0: systray in the right corner, >0: systray on left of status text */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
@@ -13,8 +13,8 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int vertpad            = 5;       /* vertical padding of bar */
 static const int sidepad            = 5;       /* horizontal padding of bar */
-static const char *fonts[]          = { "Fira Code Bold Nerd Font Complete Mono:size=12" };
-static const char dmenufont[]       = "Fira Code Bold Nerd Font Complete Mono:size=12";
+static const char *fonts[]          = { "Fira Code Nerd Font Complete:size=12", "Symbola:size=12" };
+static const char dmenufont[]       = "Fira Code Nerd Font Complete:size=14";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -37,7 +37,9 @@ static const char *colors[][3]      = {
 #include "/home/began/.cache/wal/colors-wal-dwm.h"
 
 static const char *const autostart[] = {
-        "dwmblocks","&", NULL,
+        "/usr/lib/notification-daemon-1.0/notification-daemon", "&", NULL,
+        "rsblocks","&", NULL,
+        "/usr/lib/polkit-kde-authentication-agent-1","&", NULL,
         "feh", "--bg-scale", "--no-fehbg", "/home/began/.local/share/autowall/paper", NULL,
         "picom", "--vsync", "--experimental-backends", "-m", "1",
             "-f", "-c", "--blur-strength", "5", "--xrender-sync-fence",
@@ -86,7 +88,7 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
-#define MODKEY Mod1Mask
+#define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
