@@ -1,0 +1,48 @@
+#!/bin/sh
+#
+# custom dwm startup script
+#
+# author: Martin Ohmann <martin@mohmann.de>
+#
+
+# load .Xresources and .Xdefaults
+xrdb -merge $HOME/.Xresources
+xrdb -merge $HOME/.Xdefaults
+
+# init keyring
+#eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
+
+# export keyring globals
+#export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
+
+# override style for QT applications
+export QT_STYLE_OVERRIDE=gtk
+
+# lanuch polkit auth agent
+#/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+# lauch network manager applet
+/usr/bin/nm-applet &
+
+# launch xscreensaver daemon
+#/usr/bin/xscreensaver -no-splash &
+
+# disable screensaver for fullscreen video
+#$HOME/.local/bin/lightsOn.sh 1190 &
+
+# launch thunderbird
+#/usr/bin/thunderbird > /dev/null 2>&1 &
+
+# set dircolors
+#eval $(dircolors -b $HOME/.dircolors)
+
+# lauch compositor
+/usr/bin/picom 
+
+# lauch notification daemon
+/usr/bin/notification-deamon > /dev/null 2>&1 &
+/usr/local/rsblocks > /dev/null 2>&1 &
+
+while true; do 
+  dwm 2> ~/.dwm.log
+done
