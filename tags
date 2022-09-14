@@ -8,7 +8,7 @@
 !_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
-!_TAG_PROGRAM_VERSION	5.9.0	/p5.9.20210905.0/
+!_TAG_PROGRAM_VERSION	5.9.0	/p5.9.20220828.0/
 ${OBJ}	dwm/Makefile	/^${OBJ}: config.h config.mk$/;"	t
 -1007,7 +1125,8	patches/dwm-systray-6.3.diff	/^@@ -1007,7 +1125,8 @@ killclient(const Arg *arg)$/;"	h	modifiedFile:a/dwm.c
 -101,8 +106,8	patches/dwm-systray-6.3.diff	/^@@ -101,8 +106,8 @@ static Key keys[] = {$/;"	h	modifiedFile:a/config.def.h
@@ -196,6 +196,7 @@ ISSUES	dwm/dwm.1	/^.SH ISSUES$/;"	s	title:DWM
 ISVISIBLE	dwm/dwm.c	/^#define ISVISIBLE(/;"	d	file:
 ISVISIBLEONTAG	dwm/dwm.c	/^#define ISVISIBLEONTAG(/;"	d	file:
 Key	dwm/dwm.c	/^} Key;$/;"	t	typeref:struct:__anon80d5a0d50908	file:
+Keyboard commands	dwm/dwm.1	/^.SS Keyboard commands$/;"	S	section:DWM""USAGE
 LDFLAGS	dwm/config.mk	/^LDFLAGS  = ${LIBS}$/;"	m
 LENGTH	dwm/dwm.c	/^#define LENGTH(/;"	d	file:
 LIBS	dwm/config.mk	/^LIBS = -L${X11LIB} -lX11 ${XINERAMALIBS} ${FREETYPELIBS}$/;"	m
@@ -209,6 +210,7 @@ MOUSEMASK	dwm/dwm.c	/^#define MOUSEMASK /;"	d	file:
 Manager	dwm/dwm.c	/^enum { Manager, Xembed, XembedInfo, XLast }; \/* Xembed atoms *\/$/;"	e	enum:__anon80d5a0d50403	file:
 Monitor	dwm/dwm.c	/^struct Monitor {$/;"	s	file:
 Monitor	dwm/dwm.c	/^typedef struct Monitor Monitor;$/;"	t	typeref:struct:Monitor	file:
+Mouse commands	dwm/dwm.1	/^.SS Mouse commands$/;"	S	section:DWM""USAGE
 NAME	dwm/dwm.1	/^.SH NAME$/;"	s	title:DWM
 NetActiveWindow	dwm/dwm.c	/^       NetWMFullscreen, NetActiveWindow, NetWMWindowType,$/;"	e	enum:__anon80d5a0d50303	file:
 NetClientList	dwm/dwm.c	/^       NetWMWindowTypeDialog, NetClientList, NetLast }; \/* EWMH atoms *\/$/;"	e	enum:__anon80d5a0d50303	file:
@@ -229,7 +231,7 @@ OBJ	dwm/Makefile	/^OBJ = ${SRC:.c=.o}$/;"	m
 OPTIONS	dwm/dwm.1	/^.SH OPTIONS$/;"	s	title:DWM
 PREFIX	dwm/config.mk	/^PREFIX = \/usr\/local$/;"	m
 Rule	dwm/dwm.c	/^} Rule;$/;"	t	typeref:struct:__anon80d5a0d50b08	file:
-SEE	dwm/dwm.1	/^.SH SEE ALSO$/;"	s	title:DWM
+SEE ALSO	dwm/dwm.1	/^.SH SEE ALSO$/;"	s	title:DWM
 SHCMD	dwm/config.def.h	/^#define SHCMD(/;"	d
 SHCMD	dwm/config.h	/^#define SHCMD(/;"	d
 SRC	dwm/Makefile	/^SRC = drw.c dwm.c util.c$/;"	m
@@ -242,6 +244,7 @@ SchemeSel	dwm/dwm.c	/^enum { SchemeNorm, SchemeSel, SchemeStatus, SchemeTagsSel,
 SchemeStatus	dwm/dwm.c	/^enum { SchemeNorm, SchemeSel, SchemeStatus, SchemeTagsSel, SchemeTagsNorm, SchemeInfoSel, Scheme/;"	e	enum:__anon80d5a0d50203	file:
 SchemeTagsNorm	dwm/dwm.c	/^enum { SchemeNorm, SchemeSel, SchemeStatus, SchemeTagsSel, SchemeTagsNorm, SchemeInfoSel, Scheme/;"	e	enum:__anon80d5a0d50203	file:
 SchemeTagsSel	dwm/dwm.c	/^enum { SchemeNorm, SchemeSel, SchemeStatus, SchemeTagsSel, SchemeTagsNorm, SchemeInfoSel, Scheme/;"	e	enum:__anon80d5a0d50203	file:
+Status bar	dwm/dwm.1	/^.SS Status bar$/;"	S	section:DWM""USAGE
 Systray	dwm/dwm.c	/^struct Systray {$/;"	s	file:
 Systray	dwm/dwm.c	/^typedef struct Systray   Systray;$/;"	t	typeref:struct:Systray	file:
 TAGKEYS	dwm/config.def.h	/^#define TAGKEYS(/;"	d
@@ -334,7 +337,7 @@ basew	dwm/dwm.c	/^	int basew, baseh, incw, inch, maxw, maxh, minw, minh, hintsva
 bh	dwm/dwm.c	/^static int bh, blw = 0;      \/* bar geometry *\/$/;"	v	typeref:typename:int	file:
 blw	dwm/dwm.c	/^static int bh, blw = 0;      \/* bar geometry *\/$/;"	v	typeref:typename:int	file:
 borderpx	dwm/config.def.h	/^static const unsigned int borderpx  = 3;        \/* border pixel of windows *\/$/;"	v	typeref:typename:const unsigned int
-borderpx	dwm/config.h	/^static const unsigned int borderpx  = 3;        \/* border pixel of windows *\/$/;"	v	typeref:typename:const unsigned int
+borderpx	dwm/config.h	/^static const unsigned int borderpx  = 1;        \/* border pixel of windows *\/$/;"	v	typeref:typename:const unsigned int
 broken	dwm/dwm.c	/^static const char broken[] = "broken";$/;"	v	typeref:typename:const char[]	file:
 button	dwm/dwm.c	/^	unsigned int button;$/;"	m	struct:__anon80d5a0d50808	typeref:typename:unsigned int	file:
 buttonpress	dwm/dwm.c	/^buttonpress(XEvent *e)$/;"	f	typeref:typename:void
@@ -363,6 +366,7 @@ col_gray3	dwm/config.def.h	/^static const char col_gray3[]       = "#bbbbbb";$/;
 col_gray3	dwm/config.h	/^static const char col_gray3[]       = "#bbbbbb";$/;"	v	typeref:typename:const char[]
 col_gray4	dwm/config.def.h	/^static const char col_gray4[]       = "#eeeeee";$/;"	v	typeref:typename:const char[]
 col_gray4	dwm/config.h	/^static const char col_gray4[]       = "#eeeeee";$/;"	v	typeref:typename:const char[]
+colors	colors-wal-dwm.h	/^static const char *colors[][3]      = {{$/;"	v	typeref:typename:const char * [][3]
 config.h	dwm/Makefile	/^config.h:$/;"	t
 configure	dwm/dwm.c	/^configure(Client *c)$/;"	f	typeref:typename:void
 configurenotify	dwm/dwm.c	/^configurenotify(XEvent *e)$/;"	f	typeref:typename:void
@@ -507,6 +511,9 @@ nmaster	dwm/config.def.h	/^static const int nmaster     = 1;    \/* number of cl
 nmaster	dwm/config.h	/^static const int nmaster     = 1;    \/* number of clients in master area *\/$/;"	v	typeref:typename:const int
 nmaster	dwm/dwm.c	/^	int nmaster;$/;"	m	struct:Monitor	typeref:typename:int	file:
 nomatches_len	dwm/drw.c	/^	enum { nomatches_len = 64 };$/;"	e	enum:drw_text::__anon80d30d7a0103	file:
+norm_bg	colors-wal-dwm.h	/^static const char norm_bg[] = "{color0}";$/;"	v	typeref:typename:const char[]
+norm_border	colors-wal-dwm.h	/^static const char norm_border[] = "{color8}";$/;"	v	typeref:typename:const char[]
+norm_fg	colors-wal-dwm.h	/^static const char norm_fg[] = "{color15}";$/;"	v	typeref:typename:const char[]
 num	dwm/dwm.c	/^	int num;$/;"	m	struct:Monitor	typeref:typename:int	file:
 numlockmask	dwm/dwm.c	/^static unsigned int numlockmask = 0;$/;"	v	typeref:typename:unsigned int	file:
 oldbw	dwm/dwm.c	/^	int bw, oldbw;$/;"	m	struct:Client	typeref:typename:int	file:
@@ -544,6 +551,9 @@ screen	dwm/dwm.c	/^static int screen;$/;"	v	typeref:typename:int	file:
 screenshot	dwm/config.def.h	/^static const char *screenshot[]  = { "flameshot", "gui", NULL };$/;"	v	typeref:typename:const char * []
 screenshot	dwm/config.h	/^static const char *screenshot[]  = { "flameshot", "gui", NULL };$/;"	v	typeref:typename:const char * []
 sel	dwm/dwm.c	/^	Client *sel;$/;"	m	struct:Monitor	typeref:typename:Client *	file:
+sel_bg	colors-wal-dwm.h	/^static const char sel_bg[] = "{color2}";$/;"	v	typeref:typename:const char[]
+sel_border	colors-wal-dwm.h	/^static const char sel_border[] = "{color15}";$/;"	v	typeref:typename:const char[]
+sel_fg	colors-wal-dwm.h	/^static const char sel_fg[] = "{color15}";$/;"	v	typeref:typename:const char[]
 sellt	dwm/dwm.c	/^	unsigned int sellt;$/;"	m	struct:Monitor	typeref:typename:unsigned int	file:
 selmon	dwm/dwm.c	/^static Monitor *mons, *selmon;$/;"	v	typeref:typename:Monitor *	file:
 seltags	dwm/dwm.c	/^	unsigned int seltags;$/;"	m	struct:Monitor	typeref:typename:unsigned int	file:
@@ -585,7 +595,7 @@ systraypinning	dwm/config.h	/^static const unsigned int systraypinning = 0;   \/
 systraypinningfailfirst	dwm/config.def.h	/^static const int systraypinningfailfirst = 1;   \/* 1: if pinning fails, display systray on the /;"	v	typeref:typename:const int
 systraypinningfailfirst	dwm/config.h	/^static const int systraypinningfailfirst = 1;   \/* 1: if pinning fails, display systray on the /;"	v	typeref:typename:const int
 systrayspacing	dwm/config.def.h	/^static const unsigned int systrayspacing = 2;   \/* systray spacing *\/$/;"	v	typeref:typename:const unsigned int
-systrayspacing	dwm/config.h	/^static const unsigned int systrayspacing = 2;   \/* systray spacing *\/$/;"	v	typeref:typename:const unsigned int
+systrayspacing	dwm/config.h	/^static const unsigned int systrayspacing = 9;   \/* systray spacing *\/$/;"	v	typeref:typename:const unsigned int
 systraytomon	dwm/dwm.c	/^systraytomon(Monitor *m) {$/;"	f	typeref:typename:Monitor *
 tag	dwm/dwm.c	/^tag(const Arg *arg)$/;"	f	typeref:typename:void
 tagmon	dwm/dwm.c	/^tagmon(const Arg *arg)$/;"	f	typeref:typename:void
@@ -626,6 +636,9 @@ updatesystrayiconstate	dwm/dwm.c	/^updatesystrayiconstate(Client *i, XPropertyEv
 updatetitle	dwm/dwm.c	/^updatetitle(Client *c)$/;"	f	typeref:typename:void
 updatewindowtype	dwm/dwm.c	/^updatewindowtype(Client *c)$/;"	f	typeref:typename:void
 updatewmhints	dwm/dwm.c	/^updatewmhints(Client *c)$/;"	f	typeref:typename:void
+urg_bg	colors-wal-dwm.h	/^static const char urg_bg[] = "{color1}";$/;"	v	typeref:typename:const char[]
+urg_border	colors-wal-dwm.h	/^static const char urg_border[] = "{color1}";$/;"	v	typeref:typename:const char[]
+urg_fg	colors-wal-dwm.h	/^static const char urg_fg[] = "{color15}";$/;"	v	typeref:typename:const char[]
 utf8decode	dwm/drw.c	/^utf8decode(const char *c, long *u, size_t clen)$/;"	f	typeref:typename:size_t	file:
 utf8decodebyte	dwm/drw.c	/^utf8decodebyte(const char c, size_t *i)$/;"	f	typeref:typename:long	file:
 utf8validate	dwm/drw.c	/^utf8validate(long *u, size_t i)$/;"	f	typeref:typename:size_t	file:
