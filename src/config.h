@@ -1,27 +1,27 @@
 /* See LICENSE file for copyright and license details. */
+#include <X11/XF86keysym.h>
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int gappx     = 10;        /* gap pixel between windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
+static const unsigned int gappx     = 2;       /* gap pixel between windows */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
-static const unsigned int systrayonleft = 0;   	/* 0: systray in the right corner, >0: systray on left of status text */
-static const unsigned int systrayspacing = 9;   /* systray spacing */
+static const unsigned int systrayonleft = 0;    /* 0: systray in the right corner, >0: systray on left of status text */
+static const unsigned int systrayspacing = 5;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
-static const int showsystray        = 1;     /* 0 means no systray */
-static const unsigned int snap      = 32;       /* snap pixel */
+static const int showsystray        = 1;        /* 0 means no systray */
+static const unsigned int snap      = 0;        /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const int vertpad            = 5;       /* vertical padding of bar */
-static const int sidepad            = 5;       /* horizontal padding of bar */
+static const int vertpad            = 0;        /* vertical padding of bar */
+static const int sidepad            = 0;        /* horizontal padding of bar */
 static const char *fonts[]          = { "Fira Code Nerd Font Complete:size=12", "Symbola:size=12" };
 static const char dmenufont[]       = "Fira Code Nerd Font Complete:size=14";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#770033";
-// BEGIN PYWAL COMMENT
-/*
+static const char col_cyan[]        = "#005357";
+/* BEGIN PYWAL COMMENT
 static const char *colors[][3]      = {
 	//                      fg          bg           border   //
 	[SchemeNorm]        = { col_gray3, col_gray1,   col_gray2 },
@@ -32,23 +32,25 @@ static const char *colors[][3]      = {
         [SchemeInfoSel]     = { col_gray4, col_cyan,    "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
         [SchemeInfoNorm]    = { col_gray3, col_gray1,   "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
 };
-*/
-// END PYWAL COMMENT
+/* END PYWAL COMMENT */ 
 #include "/home/began/.cache/wal/colors-wal-dwm.h"
 
 static const char *const autostart[] = {
         "/usr/lib/notification-daemon-1.0/notification-daemon", "&", NULL,
         "rsblocks","&", NULL,
         "/usr/lib/polkit-kde-authentication-agent-1","&", NULL,
-        "feh", "--bg-scale", "--no-fehbg", "/home/began/.local/share/autowall/paper", NULL,
-        "picom", "--vsync", "--experimental-backends", "-m", "1",
-            "-f", "-c", "--blur-strength", "5", "--xrender-sync-fence",
-            "--no-ewmh-fullscreen", "-b", NULL,
+        "feh",
+            "--bg-scale",
+            "--no-fehbg",
+            "/home/began/.local/share/autowall/paper", 
+            NULL,
+        "picom", "-b",
+            NULL,
 	NULL /* terminate */
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "5", "6", "7", "", "" };
+static const char *tags[] = { "", "", "", "", "", "", "", "", "" };
 
 static const char *tagsel[][2] = {
 	{ "#ffffff", "#ff0000" },
@@ -100,14 +102,19 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-l", "15", "-F", "-c", NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-F", NULL };
+// static const char *dmenucmd[]    = { "rofi","-show", "drun", NULL };
+static const char *termcmd[]     = { "st", NULL };
 static const char *screenshot[]  = { "flameshot", "gui", NULL };
-static const char *killdwm[]  = { "pkill", "dwm", NULL };
+static const char *killdwm[]     = { "pkill", "dwm", NULL };
+static const char *bupprim[]     = { "bright", "DP-4", "inc", NULL};
+static const char *bdownprim[]   = { "bright", "DP-4", "dec", NULL};
+static const char *bupsec[]      = { "bright", "HDMI-0", "inc", NULL};
+static const char *bdownsec[]    = { "bright", "HDMI-0", "dec", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,           spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_p,           spawn,          {.v = dmenucmd} },
 	{ MODKEY,                       XK_Return,      spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_Print,       spawn,          {.v = screenshot } },
 	{ MODKEY,                       XK_minus,       setgaps,        {.i = -1 } },
@@ -126,14 +133,21 @@ static Key keys[] = {
 	{ MODKEY,                       XK_t,           setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,           setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,           setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_u,           setlayout,      {.v = &layouts[3]} },
-	{ MODKEY,                       XK_o,           setlayout,      {.v = &layouts[4]} },
 	{ MODKEY,                       XK_space,       setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,       togglefloating, {0} },
 	{ MODKEY,                       XK_0,           view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,           tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_s,           focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_s,           tagmon,         {.i = +1 } },
+	{ MODKEY,                       XK_F8,          spawn,         SHCMD("pamixer -i 10")},
+	{ MODKEY,                       XK_F7,          spawn,         SHCMD("pamixer -d 10")},
+	{ MODKEY|ShiftMask,             XK_F8,          spawn,         SHCMD("pamixer -i 2")},
+	{ MODKEY|ShiftMask,             XK_F7,          spawn,         SHCMD("pamixer -d 2")},
+	{ MODKEY,                       XK_F3,          spawn,          { .v = bdownprim}
+	{ MODKEY,                       XK_F4,          spawn,          { .v = bupprim}
+	{ MODKEY|ShiftMask,             XK_F3,          spawn,          { .v = bupsec}
+	{ MODKEY|ShiftMask,             XK_F4,          spawn,          { .v = bdownsec}
+	{ MODKEY|ControlMask|ShiftMask, XK_l,           spawn,         SHCMD("slock")},
 	TAGKEYS(                        XK_1,                           0)
 	TAGKEYS(                        XK_2,                           1)
 	TAGKEYS(                        XK_3,                           2)
@@ -159,6 +173,8 @@ static Button buttons[] = {
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
+	{ ClkClientWin,         MODKEY|ShiftMask, Button1,      movemouse,      {.i = 1} },
+	{ ClkClientWin,         MODKEY|ShiftMask, Button3,      resizemouse,    {.i = 1} },
 	{ ClkTagBar,            0,              Button1,        view,           {0} },
 	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
