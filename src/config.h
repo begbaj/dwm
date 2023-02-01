@@ -3,7 +3,7 @@
 
 /* appearance */
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
-static const unsigned int gappx     = 2;       /* gap pixel between windows */
+static const unsigned int gappx     = 2;        /* gap pixel between windows */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayonleft = 0;    /* 0: systray in the right corner, >0: systray on left of status text */
 static const unsigned int systrayspacing = 5;   /* systray spacing */
@@ -12,8 +12,8 @@ static const int showsystray        = 1;        /* 0 means no systray */
 static const unsigned int snap      = 0;        /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const int vertpad            = 0;        /* vertical padding of bar */
-static const int sidepad            = 0;        /* horizontal padding of bar */
+static const int vertpad            = 1;        /* vertical padding of bar */
+static const int sidepad            = 1;        /* horizontal padding of bar */
 static const char *fonts[]          = { "Fira Code Nerd Font Complete:size=12", "Symbola:size=12" };
 static const char dmenufont[]       = "Fira Code Nerd Font Complete:size=14";
 static const char col_gray1[]       = "#222222";
@@ -21,19 +21,19 @@ static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005357";
-/* BEGIN PYWAL COMMENT
+/* BEGIN PYWAL COMMENT */
 static const char *colors[][3]      = {
 	//                      fg          bg           border   //
 	[SchemeNorm]        = { col_gray3, col_gray1,   col_gray2 },
 	[SchemeSel]         = { col_gray4, col_cyan,    col_cyan  },
-	[SchemeStatus]      = { col_gray3, col_cyan,   "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
+	[SchemeStatus]      = { col_gray3, col_cyan,    "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
 	[SchemeTagsSel]     = { col_gray4, col_cyan,    "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
         [SchemeTagsNorm]    = { col_gray3, col_gray1,   "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
         [SchemeInfoSel]     = { col_gray4, col_cyan,    "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
         [SchemeInfoNorm]    = { col_gray3, col_gray1,   "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
 };
 /* END PYWAL COMMENT */ 
-#include "/home/began/.cache/wal/colors-wal-dwm.h"
+// #include "/home/began/.cache/wal/colors-wal-dwm.h"
 
 static const char *const autostart[] = {
         "/usr/lib/notification-daemon-1.0/notification-daemon", "&", NULL,
@@ -53,15 +53,15 @@ static const char *const autostart[] = {
 static const char *tags[] = { "", "", "", "", "", "", "", "", "" };
 
 static const char *tagsel[][2] = {
-	{ "#ffffff", "#ff0000" },
-	{ "#ffffff", "#ff7f00" },
-	{ "#000000", "#ffff00" },
-	{ "#000000", "#00ff00" },
-	{ "#ffffff", "#0000ff" },
-	{ "#ffffff", "#4b0082" },
-	{ "#ffffff", "#9400d3" },
-	{ "#000000", "#ffffff" },
-	{ "#ffffff", "#000000" },
+	{ "#ffffff", "#005357" },
+	{ "#ffffff", "#005357" },
+	{ "#ffffff", "#005357" },
+	{ "#ffffff", "#005357" },
+	{ "#ffffff", "#005357" },
+	{ "#ffffff", "#005357" },
+	{ "#ffffff", "#005357" },
+	{ "#000000", "#f0aa00" },
+	{ "#ffffff", "#008800" },
 };
 
 static const Rule rules[] = {
@@ -143,10 +143,10 @@ static Key keys[] = {
 	{ MODKEY,                       XK_F7,          spawn,         SHCMD("pamixer -d 10")},
 	{ MODKEY|ShiftMask,             XK_F8,          spawn,         SHCMD("pamixer -i 2")},
 	{ MODKEY|ShiftMask,             XK_F7,          spawn,         SHCMD("pamixer -d 2")},
-	{ MODKEY,                       XK_F3,          spawn,          { .v = bdownprim}
-	{ MODKEY,                       XK_F4,          spawn,          { .v = bupprim}
-	{ MODKEY|ShiftMask,             XK_F3,          spawn,          { .v = bupsec}
-	{ MODKEY|ShiftMask,             XK_F4,          spawn,          { .v = bdownsec}
+	{ MODKEY,                       XK_F3,          spawn,          { .v = bdownprim} },
+	{ MODKEY,                       XK_F4,          spawn,          { .v = bupprim} },
+	{ MODKEY|ShiftMask,             XK_F3,          spawn,          { .v = bupsec} },
+	{ MODKEY|ShiftMask,             XK_F4,          spawn,          { .v = bdownsec} },
 	{ MODKEY|ControlMask|ShiftMask, XK_l,           spawn,         SHCMD("slock")},
 	TAGKEYS(                        XK_1,                           0)
 	TAGKEYS(                        XK_2,                           1)
