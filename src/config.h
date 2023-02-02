@@ -103,6 +103,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-F", NULL };
+static const char *dmenuwinecmd[] = { "/home/began/.local/bin/dmenuwine", NULL };
 // static const char *dmenucmd[]    = { "rofi","-show", "drun", NULL };
 static const char *termcmd[]     = { "st", NULL };
 static const char *screenshot[]  = { "flameshot", "gui", NULL };
@@ -115,6 +116,7 @@ static const char *bdownsec[]    = { "bright", "HDMI-0", "dec", NULL};
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,           spawn,          {.v = dmenucmd} },
+	{ MODKEY|ShiftMask,             XK_p,           spawn,          {.v = dmenuwinecmd} },
 	{ MODKEY,                       XK_Return,      spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_Print,       spawn,          {.v = screenshot } },
 	{ MODKEY,                       XK_minus,       setgaps,        {.i = -1 } },
