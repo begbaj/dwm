@@ -3,9 +3,9 @@
 
 /* appearance */
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
-static const unsigned int gappx     = 15;        /* gap pixel between windows */
+static const unsigned int gappx     = 15;       /* gap pixel between windows */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
-static const unsigned int systrayonleft = 0;    /* 0: systray in the right corner, >0: systray on left of status text */
+static const unsigned int systrayonleft  = 0;   /* 0: systray in the right corner, >0: systray on left of status text */
 static const unsigned int systrayspacing = 5;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray        = 1;        /* 0 means no systray */
@@ -24,13 +24,13 @@ static const char col_cyan[]        = "#005357";
 /* BEGIN PYWAL COMMENT */
 static const char *colors[][3]      = {
 	//                      fg          bg           border   //
-	[SchemeNorm]        = { col_gray3, col_gray1,   col_gray2 },
-	[SchemeSel]         = { col_gray4, col_cyan,    col_cyan  },
+	[SchemeNorm]        = { col_gray3, col_gray1,   col_gray2  },
+	[SchemeSel]         = { col_gray4, col_cyan,    col_cyan   },
 	[SchemeStatus]      = { col_gray3, col_cyan,    "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
 	[SchemeTagsSel]     = { col_gray4, col_cyan,    "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
-        [SchemeTagsNorm]    = { col_gray3, col_gray1,   "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
-        [SchemeInfoSel]     = { col_gray4, col_cyan,    "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
-        [SchemeInfoNorm]    = { col_gray3, col_gray1,   "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
+    [SchemeTagsNorm]    = { col_gray3, col_gray1,   "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
+    [SchemeInfoSel]     = { col_gray4, col_cyan,    "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
+    [SchemeInfoNorm]    = { col_gray3, col_gray1,   "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
 };
 /* END PYWAL COMMENT */ 
 // #include "/home/began/.cache/wal/colors-wal-dwm.h"
