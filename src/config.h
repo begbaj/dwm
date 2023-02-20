@@ -39,11 +39,11 @@ static const char *const autostart[] = {
         "/usr/lib/notification-daemon-1.0/notification-daemon", "&", NULL,
         "rsblocks","&", NULL,
         "/usr/lib/polkit-kde-authentication-agent-1","&", NULL,
-        "feh",
-            "--bg-scale",
-            "--no-fehbg",
-            "/home/began/.local/share/autowall/paper", 
-            NULL,
+        /* "feh", */
+        /*     "--bg-scale", */
+        /*     "--no-fehbg", */
+        /*     "/home/began/.local/share/autowall/paper", */ 
+        /*     NULL, */
         "picom", "-b",
             NULL,
 	NULL /* terminate */
