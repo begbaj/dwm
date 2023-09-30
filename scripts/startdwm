@@ -1,48 +1,23 @@
 #!/bin/sh
-#
-# custom dwm startup script
-#
-# author: Martin Ohmann <martin@mohmann.de>
-#
 
-# load .Xresources and .Xdefaults
-xrdb -merge $HOME/.Xresources
-xrdb -merge $HOME/.Xdefaults
+DIRECTORY="$HOME/.local/state/startdwm"
 
-# init keyring
-#eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
+if [ ! -d "$DIRECTORY" ]; then
+    mkdir $DIRECTORY
+fi
 
-# export keyring globals
-#export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
+echo "content of this file is unrelevant. If this exists, dwm wont stop." > $DIRECTORY/lock
 
-# override style for QT applications
-export QT_STYLE_OVERRIDE=gtk
-
-# lanuch polkit auth agent
-#/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-
-# lauch network manager applet
-/usr/bin/nm-applet &
-
-# launch xscreensaver daemon
-#/usr/bin/xscreensaver -no-splash &
-
-# disable screensaver for fullscreen video
-#$HOME/.local/bin/lightsOn.sh 1190 &
-
-# launch thunderbird
-#/usr/bin/thunderbird > /dev/null 2>&1 &
-
-# set dircolors
-#eval $(dircolors -b $HOME/.dircolors)
-
-# lauch compositor
-/usr/bin/picom 
-
-# lauch notification daemon
-/usr/bin/notification-deamon > /dev/null 2>&1 &
-/usr/local/rsblocks > /dev/null 2>&1 &
-
-while true; do 
-  dwm 2> ~/.dwm.log
+# The purpose of this script is to make dwm 'restartable' meaning that just closing dwm will
+# restart it immediatly after, without closing the xsession, i.e. keeping every window open
+while true
+do
+    xrandr --output DP-4 --rate 144 --mode 1920x1080 --primary
+    xrandr --output HDMI-0 --rate 60 --mode 1920x1080 --left-of DP-4
+    #dwm
+    dwm 2> ~/.dwmlog
+    if [ ! -f "$DIRECTORY/lock" ]; then
+        break
+    fi
+    sleep 0.2
 done
